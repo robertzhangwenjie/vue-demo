@@ -3,7 +3,9 @@
       <!-- 顶部Header -->
       <mt-header fixed title="RobertVue项目"></mt-header>
 	  <!-- 内容区域 -->
-	  <router-view></router-view>
+	  <transition mode="out-in">
+		   <router-view></router-view>
+	  </transition>
       <!-- 底部TabBar -->
       <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/home">
@@ -35,5 +37,24 @@ export default {
 <style scoped>
 .div-container {
   margin-top: 40px;
+  overflow: hidden;
 }
+
+.v-enter {
+	opacity: 0;
+	transform: translateX(100%);
+}
+.v-leave-to {
+	opacity: 0;
+	/* 动画结束时从左边消失 */
+	transform: translateX(-100%);
+	/* 动画结束时不是以相对位置出来，而是固定位置 */
+	position: absolute; 
+}
+
+.v-enter-active,
+.v-leave-active {
+	transition: all 0.5s ease;
+}
+
 </style>
