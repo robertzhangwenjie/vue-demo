@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "gulp build --env dev",
     "dev": "webpack-dev-server --open --port 8080 --hot --contentBase src",
     "mock": "node mock/mock.js"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }  
   },
   "keywords": [],
   "author": "",
