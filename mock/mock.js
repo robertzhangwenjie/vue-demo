@@ -6,7 +6,7 @@ const app = express()
 const port = 3000
 
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8000')
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     res.header('Access-Control-Allow-Headers', 'Content-Type')
     res.header('Access-Control-Allow-Credentials','true')
@@ -30,6 +30,22 @@ var list =  [
     { id: 3, name: '奔驰', ctime: new Date() },
     { id: 4, name: '众泰', ctime: new Date() }
 ]
+
+
+app.get('/getSlideshow', (req, res) => {
+    let result = {
+        code: 0,
+        message: '请求成功',
+        results: [
+            {url: 'http://www.baidu.com',img: 'images/excel.jpg'},
+            {url: 'http://www.baidu.com',img: 'images/pdf.jpg'},
+            {url: 'http://www.baidu.com',img: 'images/word.jpg'}
+        ]
+    }
+    res.send(result)
+})
+
+
 
 app.get('/list', function(req, res){
     let result = {
@@ -86,4 +102,6 @@ app.post('/add', function(req, res){
     res.send(result)
 })
 
+
 app.listen(port, () => console.log(`Express server listening at http://localhost:${port}`))
+
