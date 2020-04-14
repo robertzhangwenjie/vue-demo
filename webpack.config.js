@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const resolve = dir => path.resolve(__dirname,dir)
 
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -53,7 +54,7 @@ const config = {
                 ]
             },
             {
-                test: /\.(jpg|png|gif|jpeg)$/,
+                test: /\.(jpg|png|gif|jpeg|svg)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
@@ -79,6 +80,7 @@ const config = {
     resolve: {
         alias: {
             // "vue": "vue/dist/vue.js"
+            '@': resolve('src')
         }
     }
 }

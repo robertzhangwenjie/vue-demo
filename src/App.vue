@@ -37,6 +37,7 @@ export default {
 <style scoped>
 .div-container {
   margin-top: 40px;
+  margin-bottom: 50px;
   overflow: hidden;
 }
 
