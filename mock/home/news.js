@@ -1,36 +1,15 @@
 const express = require('express')
+let Res = require('../response')
 
-const url = require('url')
 
-const app = express()
-const port = 3000
+const router = express.Router() 
 
-var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8000')
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-    res.header('Access-Control-Allow-Headers', 'Content-Type')
-    res.header('Access-Control-Allow-Credentials', 'true')
-    next()
-}
+router.get('/', function (req, res) {
 
-//允许指定的origin跨域访问
-app.use(allowCrossDomain);
-
-//使用中间件对请求的数据使用json处理
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.get('/', function (req, res) {
     res.send("hello world")
 })
 
-class Res {
-    constructor(code = 0, message = '', results = []) {
-        this.code = 1
-        this.message = message
-        this.results = results
-    }
-}
+
 
 var newsList = [
     { id: 1, title: '宝马', ctime: new Date(), img: '', click: 1, detail: "Vue (读音 /vjuː/，类似于 view) \
@@ -65,7 +44,7 @@ var commentList = [
 ]
 
 
-app.get('/getComment/:id',(req,res) => {
+router.get('/getComment/:id',(req,res) => {
 
     let result = new Res()
     let id = req.params.id
@@ -81,7 +60,7 @@ app.get('/getComment/:id',(req,res) => {
 })
 
 
-app.post('/postComment',(req,res) =>{
+router.post('/postComment',(req,res) =>{
 
     let result = new Res()
     let cmt = req.body.comment
@@ -105,7 +84,7 @@ app.post('/postComment',(req,res) =>{
 })
 
 
-app.get('/getSlideshow', (req, res) => {
+router.get('/getSlideshow', (req, res) => {
     let result = {
         code: 0,
         message: '请求成功',
@@ -121,7 +100,7 @@ app.get('/getSlideshow', (req, res) => {
 
 
 
-app.get('/getNewsList', function (req, res) {
+router.get('/getNewsList', function (req, res) {
     let result = new Res()
     result.code = 0
     result.message = "获取新闻列表成功" 
@@ -130,7 +109,7 @@ app.get('/getNewsList', function (req, res) {
     res.send(result)
 })
 
-app.get('/getNewsInfo/:id', function (req, res) {
+router.get('/getNewsInfo/:id', function (req, res) {
     let result = new Res()
     let id = parseInt(req.params.id)
     result.message = '获取该新闻详情失败'
@@ -148,52 +127,4 @@ app.get('/getNewsInfo/:id', function (req, res) {
     res.send(result)
 })
 
-// app.get('/del/:id', function(req, res){
-//     let result = {
-//         code: 0,
-//         message: '删除成功',
-//         data: []
-//     }
-
-//     let id = req.params.id
-
-//     let flag = false
-
-//     list.some((item,index) => {
-//         if (item.id.toString() === id) {
-//             list.splice(index, 1)
-//             flag = true
-//             return
-//         }
-//     })
-
-//     if (!flag) {
-//         result['code'] = 1
-//         result['message'] = "删除的物品不存在"
-//     }
-//     result['data'] = list
-
-//     res.send(result)
-
-// })
-
-// app.post('/add', function(req, res){
-//     let result = {
-//         code: 0,
-//         message: "添加成功"
-//     }
-
-//     let name = req.body.name
-
-//     list.push({
-//         id: list.length + 1,
-//         name,
-//         ctime: new Date()
-//     })
-
-//     res.send(result)
-// })
-
-
-app.listen(port, () => console.log(`Express server listening at http://localhost:${port}`))
-
+module.exports = router

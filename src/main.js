@@ -7,10 +7,10 @@ import { Swipe, SwipeItem, Header, Button } from 'mint-ui'
 
 import 'mint-ui/lib/style.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import '../lib/mui/css/mui.min.css'
-import '../lib/mui/css/app.css'
-import '../lib/mui/css/icons-extra.css'
-import '../lib/mui/fonts/mui-icons-extra.ttf'
+import '@/lib/mui/css/mui.min.css'
+import '@/lib/mui/css/app.css'
+import '@/lib/mui/css/icons-extra.css'
+import '@/lib/mui/fonts/mui-icons-extra.ttf'
 
 
 import router from './router'

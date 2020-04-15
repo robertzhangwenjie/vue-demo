@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --open --port 8080 --hot --contentBase src",
-    "mock": "node mock/mock.js"
+    "mock": "node mock/index.js"
   },
   "husky": {
     "hooks": {

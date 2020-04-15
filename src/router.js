@@ -9,12 +9,14 @@ import member from './components/Member.vue'
 import cart from './components/Cart.vue'
 import search from './components/Search.vue'
 import newsInfo from './components/home/news/newsInfo.vue'
+import photo from './components/home/photo/Photo.vue'
 
 
 var router = new VueRouter({
   routes: [
     { path: '/', redirect: '/home' },
     { path: '/home', component: home },
+    { path: '/home/photoList', component: photo },
     { path: '/home/news', component: news },
     { path: '/home/newsInfo/:id', component: newsInfo },
     { path: '/cart', component: cart },
