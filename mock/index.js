@@ -1,5 +1,6 @@
 const express = require('express')
 const news = require('./home/news')
+const photo = require('./home/photo')
 
 const app = express()
 const port = 3000
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(news)
+app.use(photo)
 
 app.listen(port, () => console.log(`Express server listening at http://localhost:${port}`))
 
