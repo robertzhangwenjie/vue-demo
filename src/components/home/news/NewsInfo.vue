@@ -9,7 +9,7 @@
 
     <div class="news-content" v-html="newsInfo.detail"></div>
     <hr />
-    <comment :id="id" @post-comment="postComment"></comment>
+    <comment :id="id" url="/getComment/" @post-comment="postComment"></comment>
   </div>
 </template>
 

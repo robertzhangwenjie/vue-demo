@@ -32,7 +32,7 @@ export default {
       commentList: []
     };
   },
-  props: ["id"],
+  props: ["id","url"],
   created() {
     this.getCommentList();
   },
@@ -44,7 +44,7 @@ export default {
   methods: {
     getCommentList() {
       service
-        .get("/getComment/" + this.id + '?pageIndex='+ this.pageIndex)
+        .get(this.url + this.id + '?pageIndex='+ this.pageIndex)
         .then(res => {
           if (res.data.code === 0) {
             this.commentList = res.data.results
@@ -63,6 +63,12 @@ export default {
       };
       let res = false
       // 传递一个回调函数，用于接收父组件方法执行的结果
+      if (this.comment === '' || this.comment === null || this.comment === undefined) {
+          Toast({
+            message: '评论不能为空'
+          })
+          return
+      }
       try {
         this.$emit("post-comment", data, status => res = status );
         if (res) {
