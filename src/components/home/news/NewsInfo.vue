@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      newsInfo: {}
+      newsInfo: {},
+      postRes: false
     };
   },
   methods: {
@@ -44,7 +45,7 @@ export default {
           console.log(err);
         });
     },
-    postComment(data, callback) {
+    postComment(data) {
       let comment = {
         username: "robert",
         ctime: new Date(),
@@ -57,15 +58,14 @@ export default {
         })
         .then(res => {
           if (res.data.code === 0) {
+            this.postRes = true
             Toast({
               message: "评论成功"
             })
-            callback(true)
           } else {
             Toast({
               message: "评论失败"
             })
-            callback(false)
           }
         })
         .catch(err => {

@@ -74,7 +74,7 @@ router.post('/postComment',(req,res) =>{
         console.log(cm.id)
         console.log(req.body.id)
         if (cm.id.toString() === req.body.id) {
-            cmt[id] = commentList[index].comments.length + 1
+            cmt[cm.id] = commentList[index].comments.length + 1
             commentList[index].comments.push(cmt)
             result.code = 0
             result.message ='评论成功'

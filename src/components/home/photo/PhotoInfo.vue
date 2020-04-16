@@ -8,6 +8,7 @@
     <hr />
 
     <!-- 缩略图 -->
+    <vue-preview :slides="photoSwipeList" @close="closePhotoSwipe" class="preview"></vue-preview>
 
     <!-- 图片内容 -->
     <div class="content" v-html="photoInfo.desc"></div>
@@ -20,18 +21,43 @@
 <script>
 import service from "@/utils/request";
 import comment from "@/components/public/Comment.vue";
+import { Toast } from "mint-ui";
+
+
 
 export default {
   data() {
     return {
       id: this.$route.params.id,
-      photoInfo: {}
+      photoInfo: {},
+      postRes: false,
+      photoSwipeList: []
     };
   },
   created() {
     this.getPhotoInfo();
+    this.getPhotoSwipeList();
   },
   methods: {
+    getPhotoSwipeList() {
+      service
+        .get("/photoInfo/thumbnail/" + this.id)
+        .then(res => {
+          if (res.data.code === 0) {
+            this.photoSwipeList = res.data.results;
+          } else {
+            Toast({
+              message: res.data.error_message
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    closePhotoSwipe() {
+      console.log("close thumbnail");
+    },
     getPhotoInfo() {
       service
         .get("photoInfo/" + this.id)
@@ -42,21 +68,27 @@ export default {
           console.log(err);
         });
     },
-    postComment(data, callback) {
+    postComment(data) {
       let { id, comment } = data;
       service
-        .post("/postComment", {
+        .post("/photo/postComment", {
           id,
           comment
         })
         .then(res => {
-          Toast({
-            message: res.data.message
-          })
-          callback(true);
+          if (res.data.code === 0) {
+            Toast({
+              message: res.data.message
+            });
+            this.postRes = true;
+          } else {
+            Toast({
+              message: res.data.err_message
+            });
+          }
         })
         .catch(err => {
-          callback(false);
+          console.log(err);
         });
     }
   },

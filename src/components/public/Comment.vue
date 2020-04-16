@@ -70,7 +70,8 @@ export default {
           return
       }
       try {
-        this.$emit("post-comment", data, status => res = status );
+        this.$emit("post-comment", data);
+        res = this.$parent.$data.postRes
         if (res) {
           this.getCommentList()
         }
@@ -90,6 +91,7 @@ export default {
 .cmt-container {
   h3 {
     font-size: 16px;
+    font-weight: bold;
   }
   textarea {
     font-size: 14px;

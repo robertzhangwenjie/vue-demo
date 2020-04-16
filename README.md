@@ -1,4 +1,4 @@
-
+## vue开发的H5项目
 
 ### 相关技术栈
 
@@ -32,10 +32,10 @@
           ```
           `id:`传父组件评论对象的`id`
           `url:`传父组件提交评论请求的`url`地址
-          `post-comment:`传父组件提交请求的方法名，该方法需要接收一个数据对象和一个回调函数，回调函数用来给comment组件返回请求的结果为`ture`还时`false`
+          `post-comment:`传父组件提交请求的方法名，该方法需要请求成功后修改父组件中的`data`属性`postRes`为`true`，子组件会去取这个值然后判断是否需要重新拉取评论
 
           ```js
-          postComment(data, callback) { callback(true)}
+          postComment(data) { this.postRes = true}
           ```
 
   - utils 公共方法包
