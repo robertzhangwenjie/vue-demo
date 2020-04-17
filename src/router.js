@@ -11,6 +11,8 @@ import search from './components/Search.vue'
 import newsInfo from './components/home/news/newsInfo.vue'
 import photo from './components/home/photo/Photo.vue'
 import photoInfo from './components/home/photo/photoInfo.vue'
+import shop from './components/home/shop/Shop.vue'
+
 
 var router = new VueRouter({
   routes: [
@@ -20,6 +22,7 @@ var router = new VueRouter({
     { path: '/home/photoInfo/:id', component: photoInfo },
     { path: '/home/news', component: news },
     { path: '/home/newsInfo/:id', component: newsInfo },
+    { path: '/home/shop', component: shop },
     { path: '/cart', component: cart },
     { path: '/search', component: search },
     { path: '/member', component: member },

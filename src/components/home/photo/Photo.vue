@@ -11,7 +11,7 @@
             :class="['mui-control-item',imgCategory.id === 0? 'mui-active':'']"
             v-for="imgCategory in imgCategoryList"
             :key="imgCategory.id"
-            @click.prevent="getPhotoByCateId(imgCategory.id)"
+            @tap.prevent="getPhotoByCateId(imgCategory.id)"
           >{{imgCategory.title}}</a>
         </div>
       </div>

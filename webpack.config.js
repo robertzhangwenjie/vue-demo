@@ -14,7 +14,8 @@ const config = {
     devServer: {
         port: 8000,
         contentBase: './src',
-        hot: true
+        hot: true,
+        host:  '192.168.125.103'
     },
     module: {
         rules: [
