@@ -1,8 +1,9 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="goods in goodsList" :key="goods.id">
+    <div class="goods-item"  v-for="goods in goodsList" 
+    :key="goods.id" @click="getDetail(goods.id)">
       <div class="img">
-        <img :src="goods.img" alt />
+        <img v-lazy="goods.img" alt />
       </div>
       <h3 class="goods-title">{{goods.title}}</h3>
       <div class="goods-info">
@@ -32,6 +33,11 @@ export default {
         this.getGoodsList()
     },
     methods: {
+        getDetail(id){
+          // this.$router.push('shop/goodsInfo/' + id)
+          // this.$router.push({paht: 'shop/goodsInfo/' + id})
+          this.$router.push({name: 'goodsInfo', params: {id: id}})
+        },
         getGoodsList(){
             service.get('/shop/goodsList').then(
                 res => {

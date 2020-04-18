@@ -27,12 +27,12 @@ Vue.use(VuePreview, {
 
 import router from './router'
 import app from './App.vue'
+import swipe from './components/public/Swipe.vue'
+import goodsNumber from './components/public/GoodsInfoNumber.vue'
+Vue.component('my-swipe',swipe)
+Vue.component('goods-number',goodsNumber)
 
-
-
-
-
-//全局路由器
+//全局过滤器
 import { dateFilter } from '@/filter'
 Vue.filter('dateFilter', dateFilter)
 

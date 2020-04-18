@@ -71,10 +71,7 @@ export default {
       }
       try {
         this.$emit("post-comment", data);
-        res = this.$parent.$data.postRes
-        if (res) {
           this.getCommentList()
-        }
           this.comment = "";
       } catch (err) {
         console.log(err);

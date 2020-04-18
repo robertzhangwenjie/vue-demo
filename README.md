@@ -26,7 +26,7 @@
       - 首页相关组件	
     - public
       - 公共组件
-        - Comment 组件调用方法
+        - Comment 评论组件
           ```html
           <comment :id="id" url="/photoComment/" @post-comment="postComment"></comment>
           ```
@@ -37,6 +37,7 @@
           ```js
           postComment(data) { this.postRes = true}
           ```
+        - Swipe 滚动图组件
 
   - utils 公共方法包
 
