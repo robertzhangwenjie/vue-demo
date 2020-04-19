@@ -1,7 +1,5 @@
 //项目JS的入口文件
-
 import Vue from 'vue'
-
 // import MintUI from 'mint-ui'
 import MintUI from 'mint-ui'
 
@@ -36,14 +34,20 @@ Vue.component('goods-number',goodsNumber)
 import { dateFilter } from '@/filter'
 Vue.filter('dateFilter', dateFilter)
 
+
+
+//vuex
+import store from '@/store/index'
+
 var vm = new Vue({
     el: '#app',
+    store,
     data: {
     },
     render: function (createElement, context) {
         return createElement(app)
     },
-    router: router
+    router,
 
 })
 

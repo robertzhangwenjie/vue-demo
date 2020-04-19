@@ -12,20 +12,25 @@ import mui from '@/lib/mui/js/mui.min.js'
 export default {
     data () {
         return {
-            num: 1
+            num: this.goodsNum
         }
     },
     watch: {
       goodsMax : function() {
         // 使用Mui api动态设置输入框的最大值
         mui('#numbox').numbox().setOption('max',this.goodsMax)
+      },
+      num: function() {
+        this.$emit('updateNum',this.goodsId, this.num)
       }
     },
     mounted () {
       mui('#numbox').numbox()
     },
     props: {
-      goodsMax: Number
+      goodsMax: Number,
+      goodsNum: Number,
+      goodsId: Number
     }
 };
 </script>

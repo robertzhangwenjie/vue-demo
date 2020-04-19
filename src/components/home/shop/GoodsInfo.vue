@@ -25,7 +25,7 @@
           </p>
           <label for>
             购买数量:
-            <goods-number ref="goodsNumber" :goodsMax="goods.balance"></goods-number>
+            <goods-number ref="goodsNumber" :goodsMax="goods.balance" :goodsNum="1"></goods-number>
           </label>
 
           <p>
@@ -69,7 +69,7 @@ export default {
   created() {
     this.getImgList();
     this.getGoodsDetail();
-    this.getCartInfo()
+    // this.getCartInfo()
   },
   methods: {
     toDescPage(id) {
@@ -78,17 +78,17 @@ export default {
     toCommentPage(id) {
       this.$router.push({ name: "goodsComment", params: { id } });
     },
-    getCartInfo() {
-      service.get('/cartInfo').then(res => {
-        if (res.data.code === 0) {
-          console.log(document.getElementById('badge').innerText,res.data.results.length)
-          document.getElementById('badge').innerText = res.data.results.length
+    // getCartInfo() {
+    //   service.get('/cartInfo').then(res => {
+    //     if (res.data.code === 0) {
+    //       console.log(document.getElementById('badge').innerText,res.data.results.length)
+    //       document.getElementById('badge').innerText = res.data.results.length
           
-        }
-      }).catch(err => {
-        console.log(err)
-      })
-    },
+    //     }
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    // },
     addGoods() {
       this.ballFlag = true;
       let goodsNumber = this.$refs.goodsNumber.num;
@@ -99,8 +99,9 @@ export default {
           Toast({
             message: res.data.message
           })
-          this.getCartInfo()
+          // this.getCartInfo()
         }
+        this.$store.commit('addGoodsToCart',{id:this.id,num:goodsNumber})
       }).catch(err => {
         console.log(err)
       })
